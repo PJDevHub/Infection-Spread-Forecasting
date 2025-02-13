@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    /* General reset for margin, padding, and box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+/* Profile container */
+.container {
+    width: 350px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header styling */
+h2 {
+    font-size: 24px;
+    color: #ce1515;
+    margin-bottom: 20px;
+}
+
+/* Profile information styling */
+h1 {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
+    font-weight: normal;
+}
+
+/* Action buttons */
+a {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Logout button */
+a[href="/logout"] {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+a[href="/logout"]:hover {
+    background-color: #ff3333;
+}
+
+/* Update button */
+a[href="/update"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+a[href="/update"]:hover {
+    background-color: #45a049;
+}
+
+/* Delete button */
+a[href="/delete"] {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+a[href="/delete"]:hover {
+    background-color: #ec971f;
+}
+
+/* Profile block spacing */
+.container h1 + h1 {
+    margin-top: 5px;
+}
+
+
+
+</style>
+
+<h2>Profile Data</h2>
+
+{% for i in data %}
+    <h1>{{ i.username }}</h1>
+    <h1>{{ i.email }}</h1>
+    <h1>{{ i.password }}</h1>
+    
+  {% endfor %}
+<a href="/logout">Logout</a>
+<a href="/update">Update</a>
+<a href="/delete">Delete</a>
+
+
+{% endblock %}
+<!-- /update -->
