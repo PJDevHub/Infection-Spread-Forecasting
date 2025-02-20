@@ -3,6 +3,7 @@ from .models import User_data  # Import the model
 
 from django.shortcuts import render, get_object_or_404, redirect
 
+
 # View for the homepage
 def index(request):
     context = "yek key msg se show kr rha hai "
@@ -69,6 +70,8 @@ def profile(request):
         msg = "Please log in again."
         return render(request, "login.html", {"key": msg})
 
+
+
 # ------------------------------------------------------------------------------------------------------------------------
 # View for the logout page
 def logout(request):
@@ -108,14 +111,36 @@ def delete(request):
         return HttpResponse("Please login again")
     
     # ------------------------------------------------------------------------------------------------------------------------
+
+
+def datainsight(request):
+    return render(request, 'datainsight.html')
+
+def aboutus(request):
+    return render(request, 'aboutus.html')
+
+def contactus(request):
+    return render(request, 'contactus.html')
+
+# ------------------------------------------------------------------------------------------------------------------------
+# def forecasting(request):
+#     # Load your disease data
+#     data = {
+#         'Disease': ['Dengue', 'Malaria', 'Typhoid'],
+#         'Cases': [1200, 850, 430],
+#         'Deaths': [12, 9, 4]
+#     }
+#     df = pd.DataFrame(data)
+
+#     # Pass the data to the template
+#     context = {
+#         'disease_data': df.to_dict(orient='records')
+#     }
+#     return render(request, 'forecasting.html', context)
+
+
 def forecasting(request):
+    # Your forecasting logic here
     return render(request, 'forecasting.html')
 
-def data_insight(request):
-    return render(request, 'data_insight.html')
 
-def about_us(request):
-    return render(request, 'about_us.html')
-
-def contact_us(request):
-    return render(request, 'contact_us.html')

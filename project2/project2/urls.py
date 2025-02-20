@@ -19,9 +19,17 @@ from django.contrib import admin
 from django.urls import path, include
 from app2 import views
 
+
+
+
+
 urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('app2/', include('app2.urls')),  # Include app2's URL configurations
     path('', include('app2.urls')),
+    # path('forecasting/', include('forecasting.urls')),
+
+    
 ]
+

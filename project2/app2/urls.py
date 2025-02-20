@@ -21,6 +21,8 @@
 # app2/urls.py
 from django.urls import path
 from . import views
+# from .views import forecasting
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -32,7 +34,10 @@ urlpatterns = [
     path('update/', views.update, name='update'),
     path('delete/', views.delete, name='delete'),
     path('forecasting/', views.forecasting, name='forecasting'),
-    path('data_insight/', views.data_insight, name='datainsight'),
-    path('about_us/', views.about_us, name='aboutus'),
-    path('contact_us/', views.contact_us, name='contactus'),
+    path('datainsight/', views.datainsight, name='datainsight'),
+    path('aboutus/', views.aboutus, name='aboutus'),
+    path('contactus/', views.contactus, name='contactus'),
+    # path('', forecasting, name='forecasting'),
+    
+    path('forecasting/', views.forecasting, name='forecasting'),
 ]

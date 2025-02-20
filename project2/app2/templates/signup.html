@@ -71,7 +71,6 @@
 </style>
 <div class="signup-container">
     <h2>Signup</h2>
-    <img src="{% static 'image/1.jpg' %}" alt="Signup Image" width="100%" height="auto">
     
     <form id="signupForm" onsubmit="return validateForm()" method="POST">
         {% csrf_token %}
@@ -96,7 +95,4 @@
 
 <h1>{{ key }}</h1>
 
-
 {% endblock %}
-
-
