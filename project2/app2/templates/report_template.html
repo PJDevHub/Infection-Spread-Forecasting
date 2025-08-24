@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% comment %} <title>{{ disease }} Report</title> {% endcomment %}
+<style>
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+        margin: 30px;
+    }
+    h1 {
+        color: #222222;
+        font-size: 18px;
+    }
+    p {
+        color: #444444;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+    .meta {
+        background-color: #eeeeee;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-left: 3px solid #007bff;
+    }
+    h3 {
+        font-size: 14px;
+        color: #000;
+        margin-top: 20px;
+    }
+</style>
+    <h1>{{ disease }} Report</h1>
+    <div class="meta">
+        <p><strong>Report ID:</strong> {{ report_id }}</p>
+        <p><strong>Generated At:</strong> {{ generated_at }}</p>
+    </div>
+    <p>This report includes the latest insights for <strong>{{ disease }}</strong>. Each report is uniquely generated.</p>
+
+    <h3>Causes:</h3>
+    <p>{{ causes }}</p>
+
+    <h3>Prevention:</h3>
+    <p>{{ prevention }}</p>
+
+    <h3>Impact on Nearby Areas:</h3>
+    <p>{{ impact }}</p>
+
+    {% endblock %}

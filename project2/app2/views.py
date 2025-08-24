@@ -3,6 +3,14 @@ from .models import User_data  # Import the model
 
 from django.shortcuts import render, get_object_or_404, redirect
 
+# report generation
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from io import BytesIO
+import uuid
+from datetime import datetime
+
 
 # View for the homepage
 def index(request):
@@ -143,4 +151,80 @@ def forecasting(request):
     # Your forecasting logic here
     return render(request, 'forecasting.html')
 
+# ------------------------------------------------------------------------------------------------------------------------
+# Report generation view
+# def generate_report(request, disease):
+#     template_path = 'report_template.html'  # Use standalone template
+#     context = {
+#         'disease': disease.capitalize(),
+#         'report_id': str(uuid.uuid4()),
+#         'generated_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+#     }
 
+#     # Render template to HTML
+#     template = get_template(template_path)
+#     html = template.render(context)
+
+#     # Create PDF
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = f'attachment; filename="{disease}_report.pdf"'
+
+#     result = BytesIO()
+#     pdf = pisa.CreatePDF(BytesIO(html.encode("UTF-8")), dest=result)
+
+#     if not pdf.err:
+#         response.write(result.getvalue())
+#         return response
+#     else:
+#         return HttpResponse("Error generating PDF", status=500)
+
+
+def generate_report(request, disease):
+    # Unique ID and timestamp
+    report_id = str(uuid.uuid4())[:8]
+    generated_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Disease-specific data
+    content = {
+        'malaria': {
+            'causes': 'Caused by Plasmodium parasites spread through mosquito bites.',
+            'prevention': 'Use mosquito nets, repellents, and remove standing water.',
+            'impact': 'Severe outbreaks in tropical and subtropical regions.',
+        },
+        'dengue': {
+            'causes': 'Caused by Dengue virus spread through Aedes mosquitoes.',
+            'prevention': 'Prevent mosquito breeding, wear full-sleeved clothes.',
+            'impact': 'Spreads rapidly in urban areas, high hospitalization rate.',
+        },
+        'typhoid': {
+            'causes': 'Caused by Salmonella Typhi bacteria through contaminated food/water.',
+            'prevention': 'Drink clean water, maintain hygiene.',
+            'impact': 'Impacts sanitation-deficient areas most.',
+        }
+    }
+
+    disease = disease.lower()
+    if disease not in content:
+        return HttpResponse("Invalid disease")
+
+    context = {
+        'disease': disease.title(),
+        'report_id': report_id,
+        'generated_at': generated_at,
+        'causes': content[disease]['causes'],
+        'prevention': content[disease]['prevention'],
+        'impact': content[disease]['impact']
+    }
+
+    template = get_template('report_template.html')
+    html = template.render(context)
+
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
+
+    if not pdf.err:
+        response = HttpResponse(result.getvalue(), content_type='application/pdf')
+        filename = f"{disease}_report_{report_id}.pdf"
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+        return response
+    return HttpResponse('Error generating PDF')

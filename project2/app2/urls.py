@@ -40,4 +40,8 @@ urlpatterns = [
     # path('', forecasting, name='forecasting'),
     
     path('forecasting/', views.forecasting, name='forecasting'),
+
+    # report generation
+    path('generate-report/<str:disease>/', views.generate_report, name='generate_report'),
+    path('generate-report/<str:disease>/', views.generate_report, name='generate_report'),
 ]

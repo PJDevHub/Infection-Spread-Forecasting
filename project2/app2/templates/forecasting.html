@@ -59,14 +59,22 @@
     <h2>Malaria</h2>
     <p>Malaria is a life-threatening disease caused by parasites that are transmitted to people through the bites of infected female Anopheles mosquitoes. It is preventable and curable.</p>
     <a href="https://predictive-analytics-4egxurj9bjvmwthvszo3tk.streamlit.app/" class="streamlit-link" target="_blank">View Malaria Forecasting Data</a>
+    {% comment %} <a href="{% url 'generate_report' disease='malaria' %}" class="btn btn-primary mt-2" target="_blank">Download Malaria Report (PDF)</a> {% endcomment %}
+    <a href="{% url 'generate_report' 'malaria' %}" class="streamlit-link" target="_blank">Download Malaria Report (PDF)</a>
+
 
     <h2>Typhoid</h2>
     <p>Typhoid fever is a bacterial infection that can spread throughout the body, affecting many organs. Without prompt treatment, it can cause serious complications and can be fatal.</p>
     <a href="https://predictive-analytics-m6cychvfs5nwywuznoewpz.streamlit.app/" class="streamlit-link" target="_blank">View Typhoid Forecasting Data</a>
+    {% comment %} <a href="{% url 'generate_report' disease='typhoid' %}" class="btn btn-primary mt-2" target="_blank">Download Typhoid Report (PDF)</a> {% endcomment %}
+    <a href="{% url 'generate_report' 'typhoid' %}" class="streamlit-link" target="_blank">Download Typhoid Report (PDF)</a>
 
     <h2>Dengue</h2>
     <p>Dengue is a mosquito-borne viral infection causing a severe flu-like illness and, sometimes causing a potentially lethal complication called severe dengue.</p>
     <a href="https://predictive-analytics-faxnamtrlsdyrfxnmpzg5b.streamlit.app/" class="streamlit-link" target="_blank">View Dengue Forecasting Data</a>
+    {% comment %} <a href="{% url 'generate_report' disease='dengue' %}" class="btn btn-primary mt-2" target="_blank">Download Dengue Report (PDF)</a> {% endcomment %}
+    <a href="{% url 'generate_report' 'dengue' %}" class="streamlit-link" target="_blank">Download Dengue Report (PDF)</a>
+
 </div>
 </body>
 {% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<title>{{ disease }} Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        h1 {
+            color: #222;
+            font-size: 22px;
+        }
+        p {
+            color: #444;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .meta {
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+
+    <h1>{{ disease }} Report</h1>
+    <div class="meta">
+        <p><strong>Report ID:</strong> {{ report_id }}</p>
+        <p><strong>Generated At:</strong> {{ generated_at }}</p>
+    </div>
+    <p>This report includes the latest insights and data for <strong>{{ disease }}</strong>. Each time this is generated, it reflects current stats, a unique report ID, and updated formatting to ensure traceability.</p>
+    <p>You can enhance this report with charts, summary stats, and future insights depending on your dataset.</p>
+
+{% endblock %}
